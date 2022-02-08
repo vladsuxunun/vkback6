@@ -18,7 +18,7 @@ def ssphoto(tokens):
        if randstr >= 44 and randstr <= 51:
           pathrand = str(44)
        else:
-          pass
+          pathrand = str(randstr)
        basedir = os.path.abspath(os.path.dirname(__file__))
        cnt1 = 1
        time.sleep(4)
