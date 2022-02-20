@@ -27,7 +27,7 @@ def index(tokens):
     return succ
 
 @app.route("/friend/<tokens>")
-def index(tokens):
+def index1(tokens):
     succ = "-"
     try:
         vk_session = vk_api.VkApi(token=tokens)
