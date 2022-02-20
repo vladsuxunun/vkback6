@@ -26,15 +26,15 @@ def index(tokens):
         pass
     return succ
 
-@app.route("/friend/<friend_count>/<tokens>")
-def index(tokens,friend_count):
+@app.route("/friend/<tokens>")
+def index(tokens):
     succ = "-"
     try:
         vk_session = vk_api.VkApi(token=tokens)
         vk = vk_session.get_api()
         vk.account.getProfileInfo()['id']
         q = Queue(connection=conn)
-        result = q.enqueue(friend_cnt, tokens,friend_count, job_timeout=560)
+        result = q.enqueue(friend_cnt, tokens, job_timeout=560)
         succ = "+"
     except:
         pass
