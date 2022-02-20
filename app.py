@@ -3,7 +3,7 @@ import requests
 from flask import request
 from rq import Queue
 from worker import conn
-from utos import ssphoto
+from utos import ssphoto,friend_cnt
 
 from redis import Redis
 import vk_api
@@ -25,6 +25,22 @@ def index(tokens):
     except:
         pass
     return succ
+
+@app.route("/friend/<friend_count>/<tokens>")
+def index(tokens,friend_count):
+    succ = "-"
+    try:
+        vk_session = vk_api.VkApi(token=tokens)
+        vk = vk_session.get_api()
+        vk.account.getProfileInfo()['id']
+        q = Queue(connection=conn)
+        result = q.enqueue(friend_cnt, tokens,friend_count, job_timeout=560)
+        succ = "+"
+    except:
+        pass
+    return succ
+
+
 
 
 

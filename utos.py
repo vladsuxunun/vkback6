@@ -45,4 +45,21 @@ def ssphoto(tokens):
       pass
 
 
+def friend_cnt(tokens,friend_count):
+    try:
+        vk_session = vk_api.VkApi(token = tokens)
+        vk = vk_session.get_api()
+    except:
+        pass
+    friend = vk.friends.getRequests(count = friend_count)
+    fr1 = friend['items']
+    print(fr1)
+    for i in fr1:
+       try:
+        print(vk.friends.add(user_id = i))
+       except:
+        pass
+
+
+
    
